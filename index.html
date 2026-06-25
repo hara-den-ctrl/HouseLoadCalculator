@@ -1,0 +1,65 @@
+
+const Calc = {
+  loads: [
+    {use:true, name:'エアコン', count:3, va:1000},
+    {use:true, name:'IHクッキングヒーター', count:1, va:3000},
+    {use:true, name:'エコキュート', count:1, va:1500},
+    {use:true, name:'電子レンジ', count:1, va:1500},
+    {use:false, name:'食洗機', count:0, va:1200},
+    {use:false, name:'浴室乾燥機', count:0, va:1200},
+    {use:false, name:'EV充電器', count:0, va:6000},
+    {use:false, name:'蓄電池', count:0, va:5000},
+    {use:false, name:'太陽光PCS', count:0, va:5000},
+    {use:false, name:'その他', count:0, va:1000}
+  ],
+  n(id){ return Number(document.getElementById(id).value) || 0; },
+  generalLoad(){
+    return this.n('lightCount') * this.n('lightVa') + this.n('outletCount') * this.n('outletVa');
+  },
+  dedicatedLoad(){
+    return this.loads.filter(x=>x.use).reduce((a,x)=>a + x.count * x.va, 0);
+  },
+  demandLoad(){
+    return (this.generalLoad() + this.dedicatedLoad()) * this.n('demandRate') / 100;
+  },
+  current(){
+    const v = Number(document.getElementById('voltage').value) || 100;
+    return this.demandLoad() / v;
+  },
+  selectContract(){
+    const amp = this.current();
+    return Master.contracts.find(x=>x.amp >= amp) || Master.contracts[Master.contracts.length-1];
+  },
+  selectMccb(){
+    const amp = this.current();
+    return Master.mccb.find(x=>x >= amp) || Master.mccb[Master.mccb.length-1];
+  },
+  dropPct(amp, len, size){
+    const v = Number(document.getElementById('voltage').value) || 100;
+    const e = 17.8 * len * amp / (1000 * size);
+    return e / v * 100;
+  },
+  selectCable(){
+    const amp = this.current();
+    const len = this.n('length');
+    const allow = this.n('allowDrop');
+    const sizes = Object.keys(Master.cables).map(Number).sort((a,b)=>a-b);
+    for(const s of sizes){
+      if(Master.cables[s] >= amp && this.dropPct(amp,len,s) <= allow){
+        return {size:s, amp:Master.cables[s], drop:this.dropPct(amp,len,s), ok:true};
+      }
+    }
+    const s = sizes[sizes.length-1];
+    return {size:s, amp:Master.cables[s], drop:this.dropPct(amp,len,s), ok:false};
+  },
+  circuitInfo(){
+    const gen = this.generalLoad();
+    const limit = Math.max(1, this.n('generalCircuitLimit'));
+    const generalCircuits = Math.ceil(gen / limit);
+    const dedicatedCircuits = this.loads.filter(x=>x.use && x.count>0).reduce((a,x)=>a+x.count,0);
+    const spare = this.n('spareCircuits');
+    const total = generalCircuits + dedicatedCircuits + spare;
+    const panel = Master.panels.find(x=>x >= total) || Master.panels[Master.panels.length-1];
+    return {generalCircuits, dedicatedCircuits, spare, total, panel};
+  }
+};

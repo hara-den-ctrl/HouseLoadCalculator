@@ -1,0 +1,47 @@
+
+const Storage = {
+  state(){
+    return {
+      common: {
+        siteName: siteName.value, buildingName: buildingName.value, author: author.value, company: company.value,
+        system: system.value, voltage: voltage.value, demandRate: demandRate.value, length: length.value,
+        allowDrop: allowDrop.value, spareCircuits: spareCircuits.value, lightCount: lightCount.value,
+        lightVa: lightVa.value, outletCount: outletCount.value, outletVa: outletVa.value, generalCircuitLimit: generalCircuitLimit.value
+      },
+      loads: Calc.loads,
+      master: {contracts: Master.contracts, mccb: Master.mccb, cables: Master.cables, panels: Master.panels}
+    };
+  },
+  setState(s){
+    if(s.common) Object.entries(s.common).forEach(([k,v])=>{ if(document.getElementById(k)) document.getElementById(k).value = v; });
+    if(s.loads) Calc.loads = s.loads;
+    if(s.master){ Master.contracts=s.master.contracts||Master.contracts; Master.mccb=s.master.mccb||Master.mccb; Master.cables=s.master.cables||Master.cables; Master.panels=s.master.panels||Master.panels; }
+    App.renderLoads();
+    App.calculate();
+  },
+  save(){ localStorage.setItem('houseLoadCalculatorV1', JSON.stringify(this.state())); App.toast('保存しました'); },
+  saveDraft(){ localStorage.setItem('houseLoadCalculatorDraftV1', JSON.stringify(this.state())); },
+  load(show=true){
+    const s = localStorage.getItem('houseLoadCalculatorV1') || localStorage.getItem('houseLoadCalculatorDraftV1');
+    if(!s) return;
+    try{ this.setState(JSON.parse(s)); if(show) App.toast('読み込みました'); }catch(e){ App.toast('読み込み失敗'); }
+  },
+  exportJson(){
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(new Blob([JSON.stringify(this.state(),null,2)],{type:'application/json'}));
+    a.download='HouseLoadCalculator_Project.json';
+    a.click();
+  },
+  importJson(){
+    const input=document.createElement('input');
+    input.type='file'; input.accept='.json,application/json';
+    input.onchange=()=>{
+      const f=input.files[0]; if(!f) return;
+      const r=new FileReader();
+      r.onload=()=>{ try{ this.setState(JSON.parse(r.result)); App.toast('JSON読込完了'); }catch(e){ App.toast('JSON読込失敗'); } };
+      r.readAsText(f);
+    };
+    input.click();
+  },
+  resetSample(){ localStorage.removeItem('houseLoadCalculatorV1'); localStorage.removeItem('houseLoadCalculatorDraftV1'); location.reload(); }
+};
