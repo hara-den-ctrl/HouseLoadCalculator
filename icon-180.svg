@@ -1,18 +1,6 @@
-
-:root{--bg:#f4f7fb;--card:#fff;--line:#cbd5e1;--text:#0f172a;--muted:#64748b;--blue:#2563eb;--green:#16a34a;--teal:#0f766e;--warn:#f59e0b;--head:#eaf3ff;--ok:#15803d;--ng:#dc2626}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif}
-header{background:linear-gradient(120deg,#1d4ed8,#0f766e);color:#fff;padding:18px;position:sticky;top:0;z-index:10}
-header h1{font-size:22px;margin:0}header p{font-size:13px;margin:6px 0 0}
-main{max-width:1180px;margin:auto;padding:14px}.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:14px;box-shadow:0 8px 20px rgba(15,23,42,.04)}
-h2{font-size:18px;margin:0 0 12px}h3{font-size:15px;margin:16px 0 8px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.summaryGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.summaryGrid div{background:#f8fafc;border:1px solid var(--line);border-radius:12px;padding:12px}.summaryGrid span{display:block;color:var(--muted);font-size:12px}.summaryGrid b{font-size:20px}
-label{display:block;font-size:12px;font-weight:800;margin-bottom:4px}input,select,textarea{width:100%;border:1px solid var(--line);border-radius:9px;padding:9px 10px;font-size:16px;background:#fff}
-input[type=checkbox]{width:auto;transform:scale(1.2)}.unitbox{display:flex}.unitbox input,.unitbox select{border-radius:9px 0 0 9px}.unitbox span{min-width:58px;border:1px solid var(--line);border-left:0;border-radius:0 9px 9px 0;background:#f8fafc;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
-.tableWrap{overflow:auto;border:1px solid var(--line);border-radius:12px}table{width:100%;border-collapse:collapse;background:#fff;font-size:13px}th,td{border:1px solid var(--line);padding:7px;text-align:center;white-space:nowrap}th{background:var(--head)}td.left{text-align:left}
-button{border:0;border-radius:9px;padding:10px 14px;font-weight:900;cursor:pointer;background:#e2e8f0;color:#0f172a}.actions{display:flex;gap:8px;flex-wrap:wrap}.primary{background:var(--blue);color:#fff}.green{background:var(--green);color:#fff}.dark{background:var(--teal);color:#fff}.warn{background:var(--warn);color:#fff}
-.notice{background:#fffbeb;border:1px solid #facc15;border-radius:12px;padding:12px;margin-bottom:14px}.notice summary{font-weight:900;cursor:pointer}.hint{color:var(--muted);font-size:12px}.ok{color:var(--ok);font-weight:900}.ng{color:var(--ng);font-weight:900}
-.diagramBox{border:1px solid var(--line);border-radius:12px;padding:10px;background:#fff;overflow:auto}.mobileCards{display:none}.mCard{border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px;background:#fff}.mHead{display:flex;gap:10px;align-items:center;font-weight:900;margin-bottom:8px}.mGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.inactive{opacity:.45;background:#f1f5f9}
-.modalBg{display:none;position:fixed;inset:0;background:rgba(15,23,42,.45);align-items:center;justify-content:center;z-index:50}.modal{background:#fff;border-radius:16px;padding:18px;width:min(900px,94vw);max-height:90vh;overflow:auto}.close{float:right;background:#fee2e2;color:#991b1b}
-#toast{display:none;position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#111827;color:#fff;border-radius:10px;padding:10px 14px;z-index:60}.printOnly{display:none}
-@media(max-width:760px){main{padding:10px}header h1{font-size:20px}.grid,.summaryGrid{grid-template-columns:1fr}.desktopTable{display:none}.mobileCards{display:block}.actions button{flex:1 1 auto}.mGrid{grid-template-columns:1fr 1fr}}
-@media print{@page{size:A4 landscape;margin:7mm}header,.notice,.card,.modalBg,#toast{display:none!important}.printOnly{display:block}.printSheet{border:1.5px solid #111;padding:4mm}.printInfo{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;border:1px solid #333;padding:6px}table{font-size:9px}th,td{padding:3px}.printNote{font-size:10px}}
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+<rect width="180" height="180" rx="32.4" fill="#0f766e"/>
+<rect x="21.599999999999998" y="21.599999999999998" width="136.8" height="136.8" rx="21.599999999999998" fill="white"/>
+<text x="50%" y="44%" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="46.800000000000004" font-weight="700" fill="#1d4ed8">HL</text>
+<text x="50%" y="68%" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="18.0" font-weight="700" fill="#0f172a">Load</text>
+</svg>
