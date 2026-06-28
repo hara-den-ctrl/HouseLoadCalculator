@@ -10,6 +10,27 @@
 <meta name="theme-color" content="#0f766e">
 </head>
 <body>
+
+
+<style id="hdc-common-style">
+.hdcTopBar{position:sticky;top:0;z-index:9999;background:#0f172a;color:#fff;border-bottom:1px solid rgba(255,255,255,.15);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif}
+.hdcTopBarInner{max-width:1360px;margin:auto;padding:8px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.hdcBrand{display:flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-weight:900;font-size:14px;white-space:nowrap}
+.hdcBrand span{opacity:.9;font-size:12px;font-weight:700}
+.hdcToolName{font-size:12px;color:#cbd5e1;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hdcFooter{margin:24px auto 12px;max-width:1180px;padding:14px 12px;text-align:center;color:#64748b;font-size:12px;line-height:1.8;border-top:1px solid #cbd5e1;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif}
+.hdcFooter b{color:#0f172a}
+@media(max-width:640px){.hdcTopBarInner{align-items:flex-start;flex-direction:column}.hdcToolName{text-align:left;white-space:normal}.hdcFooter{font-size:11px}}
+@media print{.hdcTopBar{display:none!important}.hdcFooter{font-size:9px;margin-top:8px;padding-top:6px}}
+</style>
+
+<div class="hdcTopBar">
+  <div class="hdcTopBarInner">
+    <a class="hdcBrand" href="https://hara-den-ctrl.github.io/ElectricalTools/">🏠 ElectricalTools <span>ポータルへ戻る</span></a>
+    <div class="hdcToolName">一般住宅 負荷計算書 / Ver.2.0 / HDCF-1.0</div>
+  </div>
+</div>
+
 <header>
   <h1>一般住宅 負荷計算書 Ver.1.2</h1>
   <p>照明・コンセント・専用負荷から、契約容量・主幹・幹線・参考分電盤を簡易算定します。</p>

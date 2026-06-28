@@ -1,4 +1,4 @@
-const APP_VERSION="1.2";
+const APP_VERSION = "2.0";
 const CACHE_NAME=`HouseLoadCalculator-v${APP_VERSION}`;
 const ASSETS=["./","./index.html","./style.css","./app.js","./manifest.json","./icon-180.svg","./icon-192.svg","./icon-512.svg"];
 self.addEventListener("install",e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(ASSETS)))});
