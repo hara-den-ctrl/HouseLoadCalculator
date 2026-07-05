@@ -11,6 +11,29 @@
 </head>
 <body>
 
+<style id="hdc-warning-style">
+.hdcNoticeModal{position:fixed;inset:0;background:rgba(15,23,42,.58);display:none;align-items:center;justify-content:center;z-index:10000;padding:16px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif}
+.hdcNoticeModal.show{display:flex}
+.hdcNoticeBox{width:min(760px,96vw);background:#fff;border-radius:18px;border:1px solid #cbd5e1;box-shadow:0 24px 70px rgba(15,23,42,.28);padding:20px}
+.hdcNoticeBox h2{margin:0 0 12px;font-size:22px;color:#92400e}
+.hdcNoticeBox p{margin:0 0 12px;line-height:1.8;color:#334155;font-size:14px}
+.hdcNoticeStrong{border:1px solid #f59e0b;background:#fffbeb;border-radius:12px;padding:12px;margin:12px 0;color:#713f12;font-weight:800}
+.hdcNoticeActions{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:16px;flex-wrap:wrap}
+.hdcNoticeCheck{display:flex;gap:8px;align-items:center;color:#475569;font-size:13px}
+.hdcNoticeButton{border:0;border-radius:10px;padding:10px 16px;font-weight:900;cursor:pointer;background:#2563eb;color:#fff}
+.hdcInlineWarning{max-width:1180px;margin:14px auto;padding:12px 14px;border:1px solid #f59e0b;border-radius:12px;background:#fffbeb;color:#713f12;font-size:13px;line-height:1.7;font-weight:700;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif}
+.hdcPrintWarning{display:none}
+@media print{.hdcNoticeModal,.hdcInlineWarning{display:none!important}.hdcPrintWarning{display:block!important;border:1px solid #333;padding:5px;margin-top:6px;font-size:9px;line-height:1.5}}
+</style>
+<div class="hdcInlineWarning">⚠ 本ツールは参考計算ツールです。設計・施工・申請・検査・契約・運用の最終判断は、関係法令・内線規程・電力会社基準・メーカー資料・現場条件等を確認のうえ、利用者自身の責任で行ってください。計算結果に起因するトラブルについて Hara Den Control は責任を負いません。</div>
+<div class="hdcPrintWarning">※本計算書は参考資料です。設計・施工・申請・検査・契約・運用に際しては、関係法令・内線規程・電力会社基準・メーカー資料・現場条件等を確認し、利用者自身の責任で最終判断してください。本ツールの利用または計算結果に起因する一切のトラブルについて Hara Den Control は責任を負いません。</div>
+<div class="hdcNoticeModal" id="hdcNoticeModal"><div class="hdcNoticeBox"><h2>⚠ 使用上の注意</h2><p>本ツールは電気設備設計業務を補助するための参考ツールです。</p><div class="hdcNoticeStrong">計算結果は参考値として利用し、設計・施工・申請・検査・契約・運用にあたっては、関係法令、内線規程、電力会社基準、メーカー資料および現場条件を確認のうえ、利用者自身の責任で最終判断を行ってください。</div><p>本ツールの利用または計算結果に起因して発生した設計ミス、施工不良、設備トラブル、停電、事故、損害、その他一切の不利益について、Hara Den Control は責任を負いません。</p><div class="hdcNoticeActions"><label class="hdcNoticeCheck"><input type="checkbox" id="hdcNoticeDontShow"> 次回から表示しない</label><button class="hdcNoticeButton" onclick="hdcAcceptNotice()">同意して利用する</button></div></div></div>
+<script id="hdc-warning-script">
+function hdcAcceptNotice(){try{if(document.getElementById('hdcNoticeDontShow')?.checked){localStorage.setItem('hdcWarningAccepted','1');}}catch(e){}const m=document.getElementById('hdcNoticeModal');if(m)m.classList.remove('show');}
+(function(){try{if(localStorage.getItem('hdcWarningAccepted')==='1')return;}catch(e){}window.addEventListener('load',function(){const m=document.getElementById('hdcNoticeModal');if(m)m.classList.add('show');});})();
+</script>
+
+
 
 <style id="hdc-common-style">
 .hdcTopBar{position:sticky;top:0;z-index:9999;background:#0f172a;color:#fff;border-bottom:1px solid rgba(255,255,255,.15);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif}
